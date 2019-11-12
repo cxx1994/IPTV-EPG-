@@ -1,0 +1,95 @@
+.TV{
+    width: 1280px;
+    height: 720px;
+    background: #333333;
+    margin: auto;
+}
+.TV .body{
+    width: 1166px;
+    height: 480px;
+    padding-top: 80px;
+    margin: 0 auto;
+}
+.TV .body::after{
+    content: '';
+    clear: both;
+}
+.TV .left,
+.TV .center,
+.TV .right{
+    float: left;
+    margin-right: 12px;
+}
+.TV a{
+    display: block;
+    color: #ffffff;
+    text-align: center;
+}
+.TV .left *{
+    width: 370px;
+    height: 236px;
+    background: #942d30;
+    margin-bottom: 10px;
+}
+.TV .center{
+    width: 400px;
+}
+.TV .video{
+    height: 236px;
+    margin-bottom: 10px;
+    background: #000000;
+}
+.TV .column{
+    width: 406px;
+}
+.TV .column a{
+    float: left;
+    width: 198px;
+    height: 114px;
+    background: #50613d;
+    margin: 0 5px 5px 0;
+}
+.TV .right_top{
+    height: 236px;
+    margin-bottom: 10px;
+    background: #5d1616;
+}
+.TV .right{
+    width: 360px;
+}
+.TV .right_bottom{
+    width: 370px;
+}
+.TV .right_bottom a{
+    float: left;
+    width: 174px;
+    height: 71px;
+    margin: 0 10px 10px 0;
+    background: #e0e063;
+}
+.TV .bottom{
+    width: 870px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.TV .bottom a{
+    float: left;
+    width: 65px;
+    height: 65px;
+    margin: 40px;
+    color: #ffffff;
+    line-height: 65px;
+    border-radius: 8px;
+    background: #17aecd;
+}
+/*样式为outline*/
+.outline.current{
+    outline: 3px solid #ffffff;
+}
+/*样式为scale*/
+.scale{
+    transition: transform 0.3s ease 0s;
+}
+.scale.current{
+    transform: scale(1.1);
+}

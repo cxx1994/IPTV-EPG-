@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./src/tv.css">
+    <title>demo</title>
+    <style>
+        .TV_box{
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            margin: auto;
+        }
+        .test{
+            width: 200px;
+            padding: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,.5);
+        }
+        .test p{
+            color: white;
+            font-size: 14px;
+            margin: 2px;
+        }
+    </style>
+</head>
+<body>
+<header id="header"></header>
+<h1>请使用按键控制</h1>
+<p>▲ —>向上；▼ —>向下；◀ —>向左；▶ —>向右；backspace —>返回；enter —>确定（点击）</p>
+<div class="TV_box">
+    <div class="test">
+        <p>返回地址：<span class="backUrl"></span></p>
+        <p>初始焦点：<span class="first"></span></p>
+        <p>按键控制：<span class="control"></span></p>
+        <p>当前模块：<span class="cm"></span></p>
+        <p>当前焦点：<span class="cf"></span></p>
+        <p>当前焦点样式：<span class="style"></span></p>
+    </div>
+    <div class="TV">
+        <div class="body">
+            <div class="left" id="left">
+                <a class="outline" href="../"></a>
+                <a class="outline" ></a>
+            </div>
+            <div class="center">
+                <div class="video"></div>
+                <div class="column" id="center">
+                    <a>我是第一个焦点</a>
+                    <a></a>
+                    <a></a>
+                    <a></a>
+                </div>
+            </div>
+            <div class="right">
+                <div class="right_top" id="rightTop"></div>
+                <div class="right_bottom" id="rightBottom">
+                    <a class="scale"></a>
+                    <a class="scale"></a>
+                    <a class="scale"></a>
+                    <a class="scale"></a>
+                    <a class="scale"></a>
+                    <a class="scale"></a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom" id="bottom">
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+        </div>
+    </div>
+</div>
+<footer id="footer"></footer>
+<script src="./src/focus_build.js"></script>
+<script>
+    window.onload = function() {
+        focusCtrl.mainInit({
+            "config" : {
+                backurl : "./",
+                firstFocus: 'center,0',
+                control: 'none'
+            },
+            "left" : {
+                right : "center,0",
+                bottom : "bottom,0",
+                style: 'none'
+            },
+            "center" : {
+                column: 2,
+                left: "left,1",
+                right: "rightBottom,0",
+                bottom: "bottom,0"
+            },
+            "rightTop" : {
+                left: "center,1",
+                bottom: "rightBottom,0"
+            },
+            "rightBottom" : {
+                column: 2,
+                top: "rightTop,0",
+                left: "center,1",
+                bottom: "bottom,4",
+                style: 'none'
+            },
+            "bottom" : {
+                column: 6,
+                top: "center,2",
+                style: 'none',
+                click: function(){
+                    this.css("background",'red')
+                },
+                focus: function(){
+                    this.css("background",'blue')
+                },
+                blur: function(){
+                    this.css("background",'white')
+                }
+            }
+        });
+        function text(className, content){
+            document.getElementsByClassName(className)[0].innerText = content;
+        }
+        var showData = function(){
+            text('backUrl', focusCtrl.config.backurl);
+            text('first', focusCtrl.config.firstFocus);
+            text('control', focusCtrl.config.control);
+            text('cm', focusCtrl.currentModule.name);
+            text('cf', focusCtrl.currentFocus.ID);
+            text('style', focusCtrl.currentModule.style);
+        };
+        showData();
+        window.document.onkeydown = function(keyEvent){
+            keyEvent = keyEvent ? keyEvent : window.event;
+            focusCtrl.focusMoveControl(keyEvent.which);
+            showData();
+        }
+    };
+</script>
+</body>
+</html>
